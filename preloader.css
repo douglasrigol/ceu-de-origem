@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Preloader — Céu de Origem
+   O sol central é o indicador de progresso; as constelações se desenham
+   conforme o carregamento real da página avança.
+   ========================================================================== */
+
+html.pl-lock,
+html.pl-lock body{overflow:hidden}
+
+/* o preloader antigo (React) fica escondido; remova-o do main.jsx quando puder */
+#preloader-root{display:none!important}
+
+#ceu-preloader{
+  --sun:min(34vmin,340px);
+  --ivory:#f3ecdc;
+  --gold:#d9b46a;
+  position:fixed;inset:0;z-index:9999;overflow:hidden;
+  color:var(--ivory);
+  background:radial-gradient(ellipse at 50% 50%,#0b0b14 0%,#04050b 58%,#010206 100%);
+  /* rede de segurança: se o JS falhar, o preloader some sozinho */
+  animation:pl-failsafe 0s linear 9s forwards;
+}
+@keyframes pl-failsafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+/* grão de filme, estático e discreto */
+.pl-grain{
+  position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* constelações */
+.pl-sky{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.pl-line{
+  fill:none;stroke:var(--gold);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1 2;stroke-dashoffset:1;opacity:.7;
+}
+.pl-star{fill:var(--ivory);opacity:0}
+
+/* sol */
+.pl-sun{
+  position:absolute;left:50%;top:50%;
+  width:var(--sun);height:var(--sun);
+  margin:calc(var(--sun) / -2) 0 0 calc(var(--sun) / -2);
+  will-change:transform;
+}
+.pl-breathe{position:absolute;inset:0;animation:pl-breathe 5s ease-in-out infinite alternate}
+@keyframes pl-breathe{from{transform:scale(1)}to{transform:scale(1.025)}}
+.pl-halo{
+  position:absolute;inset:-70%;border-radius:50%;
+  background:radial-gradient(circle,rgba(249,160,70,.55) 0%,rgba(190,92,40,.28) 28%,rgba(110,50,25,.12) 48%,transparent 68%);
+  opacity:.12;transform:scale(.55);will-change:transform,opacity;
+}
+.pl-core{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#fdf3bf 0%,#fbe190 20%,#f5b95f 48%,#ef7d45 78%,#e7663a 100%);
+  box-shadow:inset 0 0 38px rgba(231,102,58,.35);
+  opacity:.5;transform:scale(.42);will-change:transform,opacity;
+}
+.pl-heat{
+  position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,#fffbe0 0%,rgba(255,244,180,.55) 24%,rgba(255,244,180,0) 62%);
+  opacity:.1;will-change:opacity;
+}
+
+/* contador e frase */
+.pl-readout{
+  position:absolute;left:0;right:0;
+  top:calc(50% + var(--sun) / 2 + clamp(22px,5vmin,48px));
+  display:grid;justify-items:center;gap:.55rem;text-align:center;pointer-events:none;
+}
+.pl-count{
+  margin:0;display:flex;align-items:baseline;
+  font:500 clamp(3.2rem,10vmin,6.4rem)/1 'Cormorant Garamond',Georgia,serif;
+  font-variant-numeric:tabular-nums lining-nums;letter-spacing:.02em;
+  text-shadow:0 2px 24px rgba(0,0,0,.6);
+}
+.pl-count small{font-size:.36em;color:var(--gold);margin-left:.14em;letter-spacing:0}
+.pl-phrase{
+  margin:0;min-height:1.4em;
+  font:italic 400 clamp(1rem,2.4vmin,1.25rem)/1.4 'Cormorant Garamond',Georgia,serif;
+  color:rgba(243,236,220,.74);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pl-breathe{animation:none}
+}

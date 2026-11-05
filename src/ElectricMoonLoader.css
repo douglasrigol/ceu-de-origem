@@ -1,0 +1,23 @@
+.electric-moon-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 46%, rgba(21, 29, 57, .62), transparent 42%), #02030a;
+  pointer-events: auto;
+}
+
+.electric-moon-canvas {
+  display: block;
+  width: min(92vw, 860px);
+  height: min(92vw, 860px);
+  max-width: 100%;
+  max-height: 100%;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-moon-loader { transition: none; }
+}

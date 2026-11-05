@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="pl-lock">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Céu de Origem — A noite em que tudo começou</title>
+<meta name="color-scheme" content="dark">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="style.css">
+<noscript><style>#ceu-preloader{display:none}html.pl-lock,html.pl-lock body{overflow:auto}</style></noscript>
+</head>
+<body>
+<video class="bgv" autoplay muted loop playsinline preload="auto" poster="media/fundo-poster.jpg" aria-hidden="true"><source src="media/fundo.mp4" type="video/mp4"></video>
+<svg id="cs" viewBox="-600 -600 1200 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g id="csw"></g></svg>
+<div class="veil" aria-hidden="true"></div>
+<div id="ceu-preloader" role="progressbar" aria-label="Carregando a página" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+ <div class="pl-grain" aria-hidden="true"></div>
+ <svg class="pl-sky" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet"><g class="pl-sky-g"></g></svg>
+ <div class="pl-sun" aria-hidden="true"><div class="pl-breathe"><div class="pl-halo"></div><div class="pl-core"></div><div class="pl-heat"></div></div></div>
+ <div class="pl-readout"><p class="pl-count" aria-hidden="true"><span class="pl-num">0</span><small>%</small></p><p class="pl-phrase" aria-hidden="true">Alinhando as estrelas…</p></div>
+</div>
+<div id="preloader-root"></div>
+<div id="ghost-cursor-root" aria-hidden="true"></div>
+<div id="split-text-root" aria-hidden="true"></div>
+
+<header>
+ <a class="brand" href="#topo" aria-label="Céu de Origem, início"><span>Céu de Origem</span><span class="brand-subtitle">Mapas celestes personalizados</span></a>
+ <nav aria-label="Principal"><a href="#produto">O mapa</a><a href="#criar">Personalização</a><a href="#faq">Perguntas</a></nav>
+</header>
+
+<main>
+<section class="hero" id="topo">
+ <div id="crystalized-root" aria-hidden="true"></div>
+ <div id="hc" aria-hidden="true"></div>
+ <div class="in">
+  <h1 class="rv">A noite em que <em>tudo começou</em></h1>
+  <p class="lead rv">Escolha uma data, um horário e um lugar que importam. Imaginamos o céu daquele momento em um mapa feito para guardar ou presentear.</p>
+  <div class="acts rv"><a class="btn" href="#criar">Criar meu mapa</a><a class="btn ghost" href="#como">Como funciona</a></div>
+ </div>
+</section>
+
+<section id="produto">
+ <div class="wrap two">
+  <div class="rv" id="poster"></div>
+  <div class="rv">
+   <span class="eyebrow">O mapa</span>
+   <h2>Um instante, <em>impresso</em> em céu.</h2>
+   <p class="lead">Uma data e um lugar viram uma peça para emoldurar: o círculo do céu no centro, as linhas de constelações em dourado e, abaixo, as palavras que marcam a noite.</p>
+   <ul class="ticks"><li>Data e horário em destaque</li><li>Nome do lugar e coordenadas</li><li>Uma frase sua, se quiser</li></ul>
+  </div>
+ </div>
+</section>
+
+<section id="como">
+ <div class="wrap">
+  <span class="eyebrow rv">Como funciona</span>
+  <h2 class="rv">Três passos até o seu céu.</h2>
+   <div class="steps">
+    <article class="step rv" tabindex="0"><div class="step-visual" aria-hidden="true"><svg viewBox="0 0 120 70"><path d="M12 53 43 27 72 42 105 14"/><circle cx="12" cy="53" r="3"/><circle cx="43" cy="27" r="2.5"/><circle cx="72" cy="42" r="2"/><circle cx="105" cy="14" r="3"/></svg></div><span>1</span><h3>Escolha o momento</h3><p>Informe a data, o horário e a cidade da noite que você quer lembrar.</p></article>
+    <article class="step rv" tabindex="0"><div class="step-visual" aria-hidden="true"><svg viewBox="0 0 120 70"><path d="M20 19 57 16 83 52 69 20 20 19M83 52 105 43"/><circle cx="20" cy="19" r="3"/><circle cx="57" cy="16" r="2.5"/><circle cx="83" cy="52" r="3"/><circle cx="69" cy="20" r="2"/><circle cx="105" cy="43" r="2.5"/></svg></div><span>2</span><h3>Confira a prévia</h3><p>Veja como o mapa tomaria forma antes de decidir qualquer coisa.</p></article>
+   <article class="step rv" tabindex="0"><div class="step-visual" aria-hidden="true"><svg viewBox="0 0 120 70"><path d="M14 46 39 20 63 31 89 12 106 46 76 56 63 31M39 20 76 56"/><circle cx="14" cy="46" r="3"/><circle cx="39" cy="20" r="2.5"/><circle cx="63" cy="31" r="3"/><circle cx="89" cy="12" r="2.5"/><circle cx="106" cy="46" r="3"/><circle cx="76" cy="56" r="2.5"/></svg></div><span>3</span><h3>Personalize a peça</h3><p>Ajuste título, frase e acabamento até a peça ficar com a sua cara.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="criar">
+ <div class="wrap">
+  <span class="eyebrow rv">Personalização</span>
+  <h2 class="rv">Qual foi <em>a noite?</em></h2>
+  <div class="demo rv">
+   <div class="demo-form-shell">
+    <p class="demo-kicker">Revelar a noite</p>
+    <form id="map-form" novalidate>
+     <div class="field-progress" aria-hidden="true">
+    <svg viewBox="0 0 240 34" focusable="false"><path class="progress-segment" data-segment="0" d="M18 17h94"/><path class="progress-segment" data-segment="1" d="M128 17h94"/><circle data-step="0" cx="18" cy="17" r="4"/><circle data-step="1" cx="120" cy="17" r="4"/><circle data-step="2" cx="222" cy="17" r="4"/></svg>
+     </div>
+     <div class="f" data-field="0"><label for="d">Qual foi a noite?</label><input id="d" name="date" type="date" value="2019-06-14" required aria-describedby="d-error"><span class="field-error" id="d-error"></span></div>
+     <div class="row">
+      <div class="f" data-field="1"><label for="h">A que horas?</label><input id="h" name="time" type="time" value="21:30" required aria-describedby="h-error"><span class="field-error" id="h-error"></span></div>
+      <div class="f" data-field="2"><label for="c">Onde você estava?</label><input id="c" name="city" type="text" placeholder="Ex.: Porto Alegre, RS" autocomplete="address-level2" list="city-suggestions" minlength="2" required aria-describedby="c-hint c-error"><datalist id="city-suggestions"><option value="Porto Alegre, RS"></option><option value="Torres, RS"></option><option value="Florianópolis, SC"></option><option value="Curitiba, PR"></option><option value="São Paulo, SP"></option><option value="Rio de Janeiro, RJ"></option><option value="Belo Horizonte, MG"></option><option value="Salvador, BA"></option><option value="Recife, PE"></option><option value="Lisboa, Portugal"></option><option value="Buenos Aires, Argentina"></option></datalist><span class="field-hint" id="c-hint">Uma cidade basta para encontrar o seu céu.</span><span class="field-error" id="c-error"></span></div>
+     </div>
+    <button class="btn map-submit" id="go" type="submit" aria-describedby="submit-hint"><span>Revelar meu céu</span></button>
+     <p class="submit-hint" id="submit-hint">Preencha os três campos para acender o mapa.</p>
+     <p id="msg" role="status" aria-live="polite">O céu se atualiza enquanto você escolhe.</p>
+    </form>
+   </div>
+   <div id="pv"><div class="preview-heading"><span class="tag">Demonstração ilustrativa</span><button class="preview-expand" id="preview-expand" type="button" aria-haspopup="dialog" aria-controls="preview-dialog">Ampliar prévia</button></div><div id="pvc" aria-live="polite" aria-label="Prévia do mapa celeste"></div><p class="note">Desenho ilustrativo: não representa um cálculo astronômico real.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="galeria">
+ <div class="wrap">
+  <span class="eyebrow rv">Galeria</span>
+  <h2 class="rv">Mapas e <em>acabamentos</em></h2>
+  <p class="lead rv">Direções de estilo para inspirar a sua peça. Exemplos ilustrativos de uma marca fictícia.</p>
+  <div class="grid" id="gal"></div>
+ </div>
+</section>
+
+<section id="faq">
+ <div class="wrap">
+  <span class="eyebrow rv" style="text-align:center">Perguntas</span>
+    <h2 class="rv faq-title" style="text-align:center">Perguntas frequentes</h2>
+  <div class="faq rv">
+     <details><summary><span class="faq-question">O mapa mostra o céu real?</span></summary><p>Nesta página, a prévia é uma ilustração inspirada no tema. Ela muda conforme os dados, mas não representa posições reais dos astros.</p></details>
+     <details><summary><span class="faq-question">Posso usar qualquer data e lugar?</span></summary><p>A ideia é que sim: um aniversário, um encontro, uma viagem. Basta ter a data, o horário aproximado e a cidade.</p></details>
+     <details><summary><span class="faq-question">Serve como presente?</span></summary><p>É a intenção da peça: guardar uma noite especial ou entregá-la a alguém que viveu esse momento com você.</p></details>
+     <details><summary><span class="faq-question">Isso é uma loja de verdade?</span></summary><p>Não. Céu de Origem é uma marca fictícia e esta é uma página conceitual, sem compra, preços ou prazos.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="final">
+ <div class="gem" id="gemw"><iframe id="gem" title="Estrela jovem DG Tauri B" allow="autoplay; fullscreen; xr-spatial-tracking"></iframe></div>
+ <svg class="orb" viewBox="0 0 200 200" aria-hidden="true">
+  <g><circle cx="100" cy="100" r="46" class="rg"/><circle cx="100" cy="100" r="78" class="rg"/><circle cx="146" cy="100" r="2.2" fill="#d9b46a"/><circle cx="45" cy="45" r="1.6" class="st"/></g>
+  <g><circle cx="100" cy="100" r="62" class="rg" stroke-dasharray="1 4"/><circle cx="100" cy="100" r="94" class="rg"/><circle cx="38" cy="100" r="1.8" fill="#a8c8ff"/><circle cx="150" cy="166" r="1.4" class="st"/></g>
+ </svg>
+ <div class="wrap in">
+  <h2 class="rv">Toda história <span class="final-line">tem <em>uma noite.</em></span></h2>
+  <a class="btn rv" href="#criar">Conhecer meu mapa</a>
+ </div>
+</section>
+</main>
+<footer>Céu de Origem é uma marca fictícia · conceito de landing page<br>Modelos 3D via Sketchfab: <a href="https://sketchfab.com/3d-models/sun-sol-central-star-estrela-central-fb089d0f17b04d36b2c8fec56eac0c43" target="_blank" rel="noopener">Sun (Sol)</a> por PainT.Things.com.br · <a href="https://sketchfab.com/3d-models/the-young-accreting-star-dg-tauri-b-4c3421a983c0439da40508b637e89725" target="_blank" rel="noopener">The young accreting star DG Tauri B</a> por Salvatore Orlando</footer>
+
+<dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-dialog-title"><div class="dialog-head"><h2 id="preview-dialog-title">Prévia do mapa</h2><button class="dialog-close" id="preview-close" type="button" aria-label="Fechar prévia">×</button></div><div id="preview-dialog-card"></div><p class="note">Demonstração ilustrativa · não representa um cálculo astronômico real.</p></dialog>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script type="module" src="./preloader.js"></script>
+<script type="module" src="./script.js"></script>
+<script type="module" src="./src/main.jsx"></script>
+</body>
+</html>
