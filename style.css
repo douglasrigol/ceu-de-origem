@@ -328,3 +328,12 @@ footer{position:relative;z-index:2;padding:0 0 50px;text-align:center;color:var(
  .gem{mix-blend-mode:normal;width:min(900px,150vw)}
  .gem iframe{background:transparent}
 }
+
+/* celular: título acima da estrela, botão abaixo dela e menor */
+@media(max-width:820px){
+ .final{min-height:780px;padding:48px 0 70px}
+ .gem{width:min(900px,128vw)}
+ .final .in{top:0}
+ .final .btn{top:0;margin-top:470px}
+ .final .btn.rv.in.split-parent{padding:10px 20px;font-size:.95rem}
+}
