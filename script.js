@@ -127,7 +127,7 @@ function sf(id,uid,spin,ok){if(typeof Sketchfab==='undefined')return false;
  new Sketchfab($(id)).init(uid,{preload:1,transparent:1,autospin:spin,dnt:1,ui_controls:0,ui_infos:0,ui_stop:0,ui_watermark:0,ui_watermark_link:0,ui_ar:0,ui_help:0,ui_settings:0,ui_vr:0,ui_fullscreen:0,ui_annotations:0,ui_hint:0,
   success:a=>{a.start();a.addEventListener('viewerready',ok)},error:()=>{}});return true}
   /* estrela jovem no final da página, carregada só quando chega perto */
-  const gio=new IntersectionObserver(es=>{if(es[0].isIntersecting){gio.disconnect();sf('#gem','4c3421a983c0439da40508b637e89725',.2,()=>$('#gemw').classList.add('on'));setTimeout(()=>$('#gemw').classList.add('on'),5000)}},{rootMargin:'500px'});gio.observe($('.final'));
+  const gio=new IntersectionObserver(es=>{if(es[0].isIntersecting){gio.disconnect();sf('#gem','4c3421a983c0439da40508b637e89725',matchMedia('(pointer:coarse)').matches?.5:.2,()=>$('#gemw').classList.add('on'));setTimeout(()=>$('#gemw').classList.add('on'),3500)}},{rootMargin:matchMedia('(pointer:coarse)').matches?'2200px':'500px'});gio.observe($('.final'));
 
 /* reveal + scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
