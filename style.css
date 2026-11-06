@@ -303,3 +303,28 @@ footer{position:relative;z-index:2;padding:0 0 50px;text-align:center;color:var(
 .sun .core{position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fffbe0 0%,#ffe27a 22%,#ffb347 45%,#ff6a2b 68%,#c8321e 84%,rgba(200,50,30,0) 100%);box-shadow:0 0 50px 14px rgba(255,170,70,.38),0 0 130px 50px rgba(235,80,35,.22);animation:breathe 5s ease-in-out infinite}
 .sun .corona{position:absolute;inset:-18%;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,190,80,0),rgba(255,120,50,.28),rgba(255,220,120,0),rgba(255,110,50,.28),rgba(255,190,80,0));filter:blur(12px);animation:spin 46s linear infinite;-webkit-mask-image:radial-gradient(circle,#000 40%,transparent 70%);mask-image:radial-gradient(circle,#000 40%,transparent 70%)}
 @keyframes breathe{50%{transform:scale(1.035)}}
+
+/* ===== celular: nav, campos de data/hora e estrela 3D ===== */
+/* iOS Safari ignora width/min-width em input date/time se o appearance nativo estiver ligado */
+#criar input[type="date"],#criar input[type="time"]{-webkit-appearance:none;appearance:none;display:block;width:100%;max-width:100%;min-width:0;min-height:48px;line-height:1.2;text-align:left}
+#criar input[type="date"]::-webkit-date-and-time-value,#criar input[type="time"]::-webkit-date-and-time-value{text-align:left;min-height:1.2em;margin:0}
+#criar input[type="date"]::-webkit-calendar-picker-indicator,#criar input[type="time"]::-webkit-calendar-picker-indicator{opacity:.7}
+#criar .f,#criar .row,#map-form,.demo-form-shell{min-width:0;max-width:100%}
+
+@media(max-width:560px){
+ header{width:calc(100% - 24px);gap:8px}
+ .brand{font-size:1rem;flex:0 1 auto;min-width:0}
+ .brand-subtitle{display:none}
+ nav{flex:0 0 auto;max-width:100%;gap:2px;padding:4px}
+ nav a:not(.btn){white-space:nowrap;padding:6px clamp(7px,2.3vw,10px);font-size:clamp(.78rem,3.5vw,.9rem);line-height:1.2}
+}
+@media(max-width:380px){
+ .brand{display:none}
+ header{justify-content:center}
+}
+
+/* estrela 3D: no iOS, mix-blend-mode + máscara sobre iframe renderiza em branco; o fundo do modelo já é transparente */
+@media(hover:none),(max-width:820px){
+ .gem{mix-blend-mode:normal;width:min(900px,150vw)}
+ .gem iframe{background:transparent}
+}
