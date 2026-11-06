@@ -5,8 +5,16 @@ import GhostCursor from './GhostCursor.jsx';
 import SplitText from './SplitText.jsx';
 import './CrystalizedBall.css';
 
+/* interruptores de teste (opcionais): abra o site com ?lite (sem os efeitos WebGL) ou ?nosplit (sem a animação palavra a palavra)
+   para descobrir qual efeito causa lentidão ou piscadas em um navegador específico */
+const params = new URLSearchParams(location.search);
+const LITE = params.has('lite');
+const NOSPLIT = params.has('nosplit');
+
 const ghostMount = document.querySelector('#ghost-cursor-root');
-if (ghostMount) {
+/* em telas de toque o rastro do cursor não faz sentido e disputa a GPU (limite de contextos WebGL no iOS) com a esfera e a estrela 3D */
+const TOUCH = matchMedia('(pointer: coarse)').matches;
+if (ghostMount && !LITE && !TOUCH) {
   createRoot(ghostMount).render(
     <GhostCursor
       color="#D9B46A"
@@ -30,10 +38,10 @@ if (ghostMount) {
 }
 
 const splitTextMount = document.querySelector('#split-text-root');
-if (splitTextMount) createRoot(splitTextMount).render(<SplitText />);
+if (splitTextMount && !NOSPLIT) createRoot(splitTextMount).render(<SplitText />);
 
 const mount = document.querySelector('#crystalized-root');
-if (mount) {
+if (mount && !LITE) {
   const renderBall = () => {
     if (mount.dataset.mounted || !document.body.classList.contains('ready')) return;
     mount.dataset.mounted = 'true';
