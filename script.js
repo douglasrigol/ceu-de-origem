@@ -127,12 +127,14 @@ function sf(id,uid,spin,ok){if(typeof Sketchfab==='undefined')return false;
  new Sketchfab($(id)).init(uid,{preload:1,transparent:1,autospin:spin,dnt:1,ui_controls:0,ui_infos:0,ui_stop:0,ui_watermark:0,ui_watermark_link:0,ui_ar:0,ui_help:0,ui_settings:0,ui_vr:0,ui_fullscreen:0,ui_annotations:0,ui_hint:0,
   success:a=>{a.start();a.addEventListener('viewerready',ok)},error:()=>{}});return true}
   /* estrela jovem no final da página, carregada só quando chega perto */
-  const gio=new IntersectionObserver(es=>{if(es[0].isIntersecting){gio.disconnect();sf('#gem','4c3421a983c0439da40508b637e89725',.2,()=>$('#gemw').classList.add('on'))}},{rootMargin:'500px'});gio.observe($('.final'));
+  const gio=new IntersectionObserver(es=>{if(es[0].isIntersecting){gio.disconnect();sf('#gem','4c3421a983c0439da40508b637e89725',.2,()=>$('#gemw').classList.add('on'));setTimeout(()=>$('#gemw').classList.add('on'),5000)}},{rootMargin:'500px'});gio.observe($('.final'));
 
 /* reveal + scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv:not(.hero .rv)').forEach(e=>io.observe(e));
 const gal=$('#gal'),root=document.documentElement;
+/* as variáveis de scroll/mouse só são lidas por #hc e #csw; gravá-las nesses dois (e não no <html>) evita recalcular o estilo da página inteira a cada rolagem */
+const fx=[$('#hc'),$('#csw')].filter(Boolean),setFx=(k,v)=>fx.forEach(el=>el.style.setProperty(k,v));
 
 /* FLIP suaviza a reorganização do FAQ quando uma resposta abre ou fecha. */
 const faqDetails=[...document.querySelectorAll('#faq details')];
@@ -168,8 +170,8 @@ function onScroll(){
   scrollFrame=0;
   const vh=innerHeight;
   document.body.classList.toggle('has-scrolled',scrollY>72);
-  root.style.setProperty('--sy',Math.min(scrollY,vh));
-  root.style.setProperty('--sc',scrollY);
+  setFx('--sy',Math.min(scrollY,vh));
+  setFx('--sc',scrollY);
   if(RM){gal.style.setProperty('--k',0);return}
   const t=gal.getBoundingClientRect().top,p=Math.max(0,Math.min(1,(vh*.95-t)/(vh*.6)));
   gal.style.setProperty('--k',(1-(1-Math.pow(1-p,3))).toFixed(3));
@@ -180,6 +182,5 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onS
 /* cursor parallax */
 if(!RM&&matchMedia('(pointer:fine)').matches){let tx=0,ty=0,cx=0,cy=0,on=false;
  addEventListener('mousemove',e=>{tx=e.clientX/innerWidth*2-1;ty=e.clientY/innerHeight*2-1;if(!on){on=true;requestAnimationFrame(tick)}});
- function tick(){cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;root.style.setProperty('--mx',cx.toFixed(3));root.style.setProperty('--my',cy.toFixed(3));
+ function tick(){cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;setFx('--mx',cx.toFixed(3));setFx('--my',cy.toFixed(3));
   if(Math.abs(tx-cx)+Math.abs(ty-cy)>.002)requestAnimationFrame(tick);else on=false}}
-
